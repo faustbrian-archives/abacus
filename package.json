@@ -1,0 +1,82 @@
+{
+	"name": "@faustbrian/typescript-boilerplate",
+	"version": "0.1.0",
+	"description": "Project boilerplate for TypeScript",
+	"homepage": "https://github.com/faustbrian/typescript-boilerplate",
+	"bugs": {
+		"url": "https://github.com/faustbrian/typescript-boilerplate/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:faustbrian/typescript-boilerplate.git"
+	},
+	"license": "MIT",
+	"author": "Brian Faust <hello@basecode.sh>",
+	"files": [
+		"dist"
+	],
+	"main": "dist/index",
+	"types": "dist/index",
+	"scripts": {
+		"build": "yarn clean && tsc",
+		"build:watch": "yarn build -w",
+		"clean": "rimraf .coverage dist tmp",
+		"format": "yarn lint && yarn prettier",
+		"lint": "tslint -c tslint.json -p tslint.json 'src/**/*.ts' --fix",
+		"prepublishOnly": "yarn format && yarn test && yarn build",
+		"prettier": "prettier --write \"./*.{ts,js,json,md}\" \"./**/*.{ts,js,json,md}\"",
+		"test": "jest",
+		"test:watch": "jest --watchAll"
+	},
+	"jest": {
+		"bail": true,
+		"collectCoverage": true,
+		"collectCoverageFrom": [
+			"src/**/*.ts",
+			"!**/node_modules/**"
+		],
+		"coverageDirectory": "<rootDir>/.coverage",
+		"coverageReporters": [
+			"json",
+			"lcov",
+			"text",
+			"clover",
+			"html"
+		],
+		"moduleFileExtensions": [
+			"ts",
+			"tsx",
+			"js",
+			"jsx",
+			"json",
+			"node"
+		],
+		"setupFilesAfterEnv": [
+			"jest-extended"
+		],
+		"testEnvironment": "node",
+		"testMatch": [
+			"**/*.test.ts"
+		],
+		"transform": {
+			"^.+\\.tsx?$": "ts-jest"
+		},
+		"verbose": true
+	},
+	"dependencies": {
+		"bignumber.js": "^9.0.0"
+	},
+	"devDependencies": {
+		"@faustbrian/tslint": "^0.1.2",
+		"@types/jest": "^24.0.11",
+		"@types/node": "^11.13.7",
+		"codecov": "^3.3.0",
+		"jest": "^24.7.1",
+		"jest-extended": "^0.11.1",
+		"prettier": "^1.17.0",
+		"rimraf": "^2.6.3",
+		"ts-jest": "^24.0.2",
+		"tslint": "^5.16.0",
+		"typescript": "^3.4.5"
+	}
+}
